@@ -30,11 +30,11 @@ class LinkNode{
 }
 
 class LinklistNode{
-	
+
 	protected LinkNode start;
 	protected LinkNode end;
 	public int size;
-	
+
 	public LinklistNode(){
 		start=null;
 		end= null;
@@ -43,11 +43,11 @@ class LinklistNode{
 	public boolean isEmpty(){
 		return start==null;
 	}
-	
+
 	public int getSize(){
 		return size;
 	}
-	
+
 	public void insertAtbegin(int value){
 		LinkNode linkNode= new LinkNode(value ,null );
 		size++;
@@ -60,6 +60,34 @@ class LinklistNode{
 			start=linkNode;
 		}	
 	}
+
+	public void insertAtEnd(int value){
+		LinkNode linkNode= new LinkNode(value ,null );
+		size++;
+		if(start==null){
+			start=linkNode;
+			end= start;
+		}
+		else{
+			end.setLink(linkNode);
+			end= linkNode;
+		}
+	}
+	public void insertAtPos(int value, int pos){
+		LinkNode linkNode= new LinkNode(value, null);
+		LinkNode linkNode2= start;
+		pos= pos-1;
+		for(int i = 0; i<size; i++){
+			if(i == pos){
+				LinkNode node= linkNode2.getLink();
+				linkNode2.setLink(linkNode);
+				linkNode.setLink(node);
+			}
+			linkNode2= linkNode2.getLink();
+		}
+		size++;
+
+	}
 	public void display(){
 		System.out.println("link list");
 		if (size==0) {
@@ -71,14 +99,14 @@ class LinklistNode{
 			return;
 		}
 		LinkNode linknode= start;
-		System.out.println(start.getData()+"->");
+		System.out.print(start.getData()+"->");
 		linknode= start.getLink();
-		while (linknode.getLink()==null) {
-			System.out.println(linknode.getData()+"->");
+		while (linknode.getLink()!=null) {
+			System.out.print(linknode.getData()+"->");
 			linknode=linknode.getLink();
 		}
-		/*System.out.println(linknode.getData()+"\n");*/
-		
+		System.out.println(linknode.getData());
+
 	}
 }
 
@@ -100,9 +128,19 @@ public class LinkedListImplementation {
 				break;
 			case 2:
 				System.out.println("enter element to insert");
+				linklistNode.insertAtEnd(scanner.nextInt());
 				break;
 			case 3:
 				System.out.println("enter element to insert");
+				int num= scanner.nextInt();
+				System.out.println("enter positin");
+				int pos= scanner.nextInt();
+				if(pos<=0||pos>linklistNode.getSize()){
+					System.out.println("invaild postion");
+				}
+				else{
+					linklistNode.insertAtPos(num, pos);
+				}
 				break;
 			default:
 				System.out.println("you enter wrong choice");
