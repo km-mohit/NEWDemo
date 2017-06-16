@@ -88,6 +88,7 @@ class LinklistNode{
 		size++;
 
 	}
+<<<<<<< HEAD
 	public void deleteAtPos( int pos){
 		if(pos==1){
 			start= start.getLink();
@@ -120,6 +121,8 @@ class LinklistNode{
 		size--;
 
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/km-mohit/NEWDemo.git
 	public void display(){
 		System.out.println("link list");
 		if (size==0) {
@@ -176,6 +179,7 @@ public class LinkedListImplementation {
 				else{
 					linklistNode.insertAtPos(num, pos);
 				}
+<<<<<<< HEAD
 				break;
 			case 4:
 				System.out.println("enter the position");
@@ -192,6 +196,8 @@ public class LinkedListImplementation {
 				break;
 			case 6:
 				System.out.println("size of list"+linklistNode.size);
+=======
+>>>>>>> branch 'master' of https://github.com/km-mohit/NEWDemo.git
 				break;
 			default:
 				System.out.println("you enter wrong choice");
