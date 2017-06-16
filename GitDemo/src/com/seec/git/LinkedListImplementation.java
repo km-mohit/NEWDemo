@@ -88,6 +88,38 @@ class LinklistNode{
 		size++;
 
 	}
+	public void deleteAtPos( int pos){
+		if(pos==1){
+			start= start.getLink();
+			size--;
+			return;
+		}
+		if(pos==size){
+			LinkNode st = start;
+			LinkNode stt= start;
+			while(st!=end){
+				stt= st;
+				st=st.getLink();
+			}
+			end= stt;
+			end.setLink(null);
+			size--;
+			return;
+		}
+		LinkNode lnk= start;
+		pos=pos-1;
+		for(int i = 0 ; i<size; i++){
+			if(i==pos){
+				LinkNode ptr= lnk.getLink();
+				ptr= ptr.getLink();
+				lnk.setLink(ptr);
+				break;	
+			}
+			lnk.getData();
+		}
+		size--;
+
+	}
 	public void display(){
 		System.out.println("link list");
 		if (size==0) {
@@ -120,6 +152,9 @@ public class LinkedListImplementation {
 			System.out.println("1. enter element to insert at begining");
 			System.out.println("2. enter element to insert at end");
 			System.out.println("3. enter element to insert at pos");
+			System.out.println("4. enter element to delete at pos");
+			System.out.println("5. status");
+			System.out.println("6. size of list");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -142,6 +177,23 @@ public class LinkedListImplementation {
 					linklistNode.insertAtPos(num, pos);
 				}
 				break;
+			case 4:
+				System.out.println("enter the position");
+				int position= scanner.nextInt();
+				if(position<1||position>linklistNode.getSize()){
+					System.out.println("invalid position");
+				}
+				else{
+					linklistNode.deleteAtPos( position);	
+				}
+
+				break;
+			case 5:
+				System.out.println("empty status"+linklistNode.isEmpty());
+				break;
+			case 6:
+				System.out.println("size of list"+linklistNode.size);
+				break;
 			default:
 				System.out.println("you enter wrong choice");
 				break;
@@ -153,5 +205,4 @@ public class LinkedListImplementation {
 		} while (ch=='Y'|| ch=='y');
 		scanner.close();
 	}
-
 }
